@@ -5,6 +5,64 @@ function onChoiceChange(e){
 };
 
 
+function onSellClick(e){
+  if ($('.quantity').val()!=0){
+    var quantity = $('.quantity').val()*-1;
+    var price = $('#purchaseprice').val();
+    var sym = $('#purchasesymbol').val();
+    var multiplier = $('#total_multiplier').val();
+    $('#purchasequantity').val($('.quantity').val() * -1);
+    confirm("You want to sell  "+quantity*-1+" contract(s) of "+sym+" at "+ price);
+    var cash_outlay=quantity*price*50
+
+}
+  else{
+    confirm("You must enter in a quantity");
+}
+}
+
+
+
+function onBuyClick(e){
+  if ($('.quantity').val()!=0){
+    var quantity = $('.quantity').val();
+    var price = $('#purchaseprice').val();
+    var sym = $('#purchasesymbol').val();
+    var multiplier = $('#total_multiplier').val();
+    $('#purchasequantity').val($('.quantity').val());
+    confirm("You want to buy  "+quantity+" contract(s) of "+sym+" at "+ price);
+}
+  else{
+    confirm("You must enter in a quantity");
+  }
+}
+
+$(".choice").change(onChoiceChange);
+$("#sellbutton").click(onSellClick);
+$("#buybutton").click(onBuyClick);
+
+
+$("#trade-futures").submit(function(e){
+  e.preventDefault();
+  var quantity = $('#purchasequantity').val();
+  var price = $('#purchaseprice').val();
+  var sym = $('#purchasesymbol').val();
+  var multiplier = $('#total_multiplier').val();
+  var total_funds= $('#total_funds').val();
+  $.post("/instrument/purchase/", {
+    quantity: quantity,
+    price: price,
+    symbol: sym,
+    multiplier:multiplier,
+    total_funds:total_funds
+  }).then(function(response){
+    console.log(response);
+  }, function(error_response){
+    console.log(error_response)
+  })
+
+})
+
 
 
 
@@ -175,80 +233,7 @@ $.ajax(
            range: [min*.95, max*1.05],
        }
      };
-
      Plotly.newPlot('candlestick', data, layout);
-
-
-
-
-
-
-  $(".choice").change(onChoiceChange);
-  $("#sellbutton").click(onSellClick);
-  $("#buybutton").click(onBuyClick);
-
-
-  $("#trade-futures").submit(function(e){
-    e.preventDefault();
-    var quantity = $('#purchasequantity').val();
-    var price = $('#purchaseprice').val();
-    var sym = $('#purchasesymbol').val();
-    var multiplier = $('#total_multiplier').val();
-    var total_funds= $('#total_funds').val();
-    $.post("/instrument/purchase/", {
-      quantity: quantity,
-      price: price,
-      symbol: sym,
-      multiplier:multiplier,
-      total_funds:total_funds
-    }).then(function(response){
-      console.log(response);
-    }, function(error_response){
-      console.log(error_response)
-    })
-
-  })
-
-
-
-  function onSellClick(e){
-    if ($('.quantity').val()!=0){
-      var quantity = $('.quantity').val()*-1;
-      var price = $('#purchaseprice').val();
-      var sym = $('#purchasesymbol').val();
-      var multiplier = $('#total_multiplier').val();
-      $('#purchasequantity').val($('.quantity').val() * -1);
-      confirm("You want to sell  "+quantity*-1+" contract(s) of "+sym+" at "+ price);
-      var cash_outlay=quantity*price*50
-
-  }
-    else{
-      confirm("You must enter in a quantity");
-  }
-}
-
-
-
-  function onBuyClick(e){
-    if ($('.quantity').val()!=0){
-      var quantity = $('.quantity').val();
-      var price = $('#purchaseprice').val();
-      var sym = $('#purchasesymbol').val();
-      var multiplier = $('#total_multiplier').val();
-      $('#purchasequantity').val($('.quantity').val());
-      confirm("You want to buy  "+quantity+" contract(s) of "+sym+" at "+ price);
-  }
-    else{
-      confirm("You must enter in a quantity");
-    }
-}
-
-
-
-
-
-
-
    },
    error: function(error){
     alert(message)
