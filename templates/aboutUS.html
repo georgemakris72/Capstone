@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% load static from staticfiles %}
+
+
+  {% block content %}
+  <div class="container-fluid" id="front-img-container">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10 middle">
+      <img src="{% static 'images/charts.png' %}" id="front-img"/>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+  <div class="container-fluid" id="About-US">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6" id="middle">
+      <p class="Company"> <span>Agricultural Futures Inc.  </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam efficitur, leo ac auctor volutpat, leo nulla aliquam est, vel semper diam magna a felis. Nunc quis libero sit amet risus dapibus mattis. Fusce feugiat egestas erat sit amet accumsan. Aliquam erat volutpat. Duis finibus est in aliquet elementum. Nunc gravida lacus non posuere mattis. Fusce vitae ligula libero. Quisque eros leo, semper vel quam sed, suscipit pulvinar lacus. Etiam cursus dolor id elit feugiat ultricies.</p>
+
+<p class="Company">Phasellus rhoncus nisi a finibus finibus. Duis sagittis ex eget arcu lacinia vulputate. Pellentesque euismod enim eget maximus pulvinar. Nulla justo velit, porta sit amet nisi rhoncus, vulputate egestas justo. Ut iaculis lectus in faucibus dignissim. Sed viverra malesuada risus in iaculis. Nam accumsan, nisi et accumsan volutpat, enim tortor efficitur eros, eu molestie nulla lectus a tortor. Cras maximus euismod lorem, at scelerisque diam egestas tempus. Sed consectetur sollicitudin vulputate. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+
+<p class="Company">Sed at dui vitae massa efficitur lobortis et et ante. Mauris fermentum, neque sed molestie eleifend, massa nulla eleifend dolor, quis lobortis ante quam id lacus. In imperdiet tincidunt ipsum, eu ornare elit laoreet nec. Praesent malesuada, metus vitae blandit pharetra, elit eros suscipit massa, viverra euismod dolor augue a sem. </p>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+  {% endblock %}

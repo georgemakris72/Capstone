@@ -1,0 +1,131 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/trading.css' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <title>Trading Capstone</title>
+  </head>
+  <body>
+    <div class="jumbotron" id="main-background">
+    <div class="container-fluid">
+    <div class="col-sm-9" >
+      <div id="compName">
+      <a href="{% url 'home' %}"><h1> Agricultural</h1> <h1> Futures</h1>
+      <h4><i>...trade like a pro.</i></h4></a>
+    </div>
+
+      <div class="imgcontainer">
+     <a href="{% url 'home' %}"><img src= "{% static 'images/Home.jpg' %}" alt="Home" class="Home"/></a>
+    </div>
+    </div>
+    <div class="col-sm-3" id="front_login">
+    <!-- {% block login %}
+    {% endblock %} -->
+
+    {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'account_logout' %}" id="logoutof">{% csrf_token %}
+    <button type="submit" id="logouts">Logout</button>
+    </form>
+    {% else %}
+    <form method="POST" action="{% url 'account_login' %}" id="logout">{% csrf_token %}
+      <tr>
+      <th><label for="id_login">Username:</label></th>
+      <td><input type="text" name="login" placeholder="Username" autofocus="autofocus" maxlength="150" required class="login-text" id="id_login" /></td>
+    </tr>
+    <tr>
+      <th><label for="id_password">Password:</label></th>
+      <td><input type="password" name="password" placeholder="Password" required  class="login-text" id="id_password" /></td>
+    </tr>
+    <tr>
+      <th><label for="id_remember">Remember Me:</label></th>
+      <td><input type="checkbox" name="remember" id="id_remember" /></td>
+    </tr>
+    <!-- <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>-->
+    <button type="submit">Login</button>
+    <!--<input type="checkbox" checked="checked"> Remember me -->
+
+
+    <div class="container login-text">
+    <a href="{% url 'account_signup' %}" class="btn btn-info registerbtn" role="button">Register</a>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+    {% endif %}
+    </form>
+
+
+  </div>
+</div>
+</div>
+<div class="container-fluid" id="nav-section">
+<div class="col-sm-1"></div>
+<div class="col-sm-10">
+<ul class="nav navbar-nav">
+  {% if user.is_authenticated %}
+  <li><a href="{% url 'transactions' %}" class="nav-links">Transactions</a></li>
+  <li><a href="{% url 'portfolio' %}"  class="nav-links">Portfolio</a></li>
+  <li><a href="{% url 'funds' %}" class="nav-links">Add Funds</a></li>
+  <li><a href="{% url 'instrument_list' %}" class="nav-links">Trade Futures</a></li>
+  <li><a href="{% url 'specs' %}" class="nav-links">Instrument Specs</a></li>
+  {% else %}
+  <li><a href="#" id="not-authenticated" class="nav-links" disabled>Transactions</a></li>
+  <li><a href="#" id="not-authenticated1" class="nav-links" disabled>Portfolio</a></li>
+  <li><a href="#" id="not-authenticated2" class="nav-links" disabled>Add Funds</a></li>
+  <li><a href="#" id="not-authenticated3" class="nav-links" disabled>Trade Futures</a></li>
+  <li><a href="{% url 'specs' %}" class="nav-links">Instrument Specs</a></li>
+
+  {% endif %}
+</ul>
+</div>
+<div class="col-sm-1"></div>
+</div>
+
+<main>
+
+
+{% block content %}
+{% endblock %}
+<div class="container-fluid bottom-footer">
+<div class="col-sm-1"></div>
+<div class="col-sm-10" id="footer">
+<ul class="nav navbar-nav">
+  {% if user.is_authenticated %}
+<li><a href="{% url 'home' %}" class="nav-links bottom">Home</a></li>
+<li><a href="{% url 'aboutUS' %}" class="nav-links bottom">About Us</a></li>
+<li><a href="{% url 'transactions' %}" class="nav-links bottom"> Transactions</a></li>
+<li><a href="{% url 'portfolio' %}" class="nav-links bottom">Portfolio</a></li>
+<li><a href="{% url 'funds' %}" class="nav-links bottom">Add Funds</a></li>
+<li><a href="{% url 'instrument_list' %}" class="nav-links bottom">Trade Futures</a></li>
+<li><a href="{% url 'specs' %}" class="nav-links bottom">Instrument Specs</a></li>
+<li><a href="{% url 'ContactUS' %}" class="nav-links bottom">Contact Us</a></li>
+{% else %}
+<li><a href="{% url 'home' %}" class="nav-links bottom">Home</a></li>
+<li><a href="{% url 'aboutUS' %}" class="nav-links bottom">About Us</a></li>
+<li><a href="#" id="not-authenticated4" class="nav-links bottom"> Transactions</a></li>
+<li><a href="#" id="not-authenticated5" class="nav-links bottom">Portfolio</a></li>
+<li><a href="#" id="not-authenticated6" class="nav-links bottom">Add Funds</a></li>
+<li><a href="#" id="not-authenticated7" class="nav-links bottom">Trade Futures</a></li>
+<li><a href="{% url 'specs' %}" class="nav-links bottom">Instrument Specs</a></li>
+<li><a href="{% url 'ContactUS' %}" class="nav-links bottom">Contact Us</a></li>
+{% endif %}
+</ul>
+</div>
+<div class="col-sm-1"></div>
+</div>
+</main>
+  <script type="text/javascript" src="{% static 'Javascript/jquery-3.2.1.min.js' %}"> </script>
+  <script type="text/javascript" src="{% static 'Javascript/bootstrap.min.js' %}"> </script>
+
+  {% block futurejs %}
+  {% endblock %}
+  <script type="text/javascript" src="{% static 'Javascript/myApp.js' %}"> </script>
+  </body>
+</html>

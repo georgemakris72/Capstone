@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% load static from staticfiles %}
+
+{% block content %}
+<style>
+#piechart-div, #table-striped-portfolio{
+  margin-top: 5em;
+  background-color: white;
+}
+</style>
+
+<div class="container-fluid" id="piechart-div">
+  <div class="col-sm-8 middle" id="pie-chart">
+  </div>
+  <div class="col-sm-4">
+  <table class="table table-striped" id="table-striped-portfolio">
+    <thead>
+    <tr id="tableheaderRows">
+      <th id="future-headers">Instrument</th>
+      <th id="future-headers">Instrument Holdings</th>
+    </tr>
+  </thead>
+  <tbody>
+
+      {% for transaction in object %}
+      <tr class="transaction-rows">
+      <td id="futures" class="transaction-symbols">{{transaction.symbol}}</td>
+      <td id="futures" class="transaction-symbols-amounts">{{transaction.absolute_symbol}}</td>
+    </tr>
+    {% endfor %}
+
+
+  </tbody>
+  </table>
+</div>
+</div>
+{% endblock content %}
+
+{% block futurejs %}
+<script type="text/javascript" src="{% static 'Javascript/plotly-latest.min.js' %}"> </script>
+<script type="text/javascript" src="{% static 'Javascript/portfolio.js' %}"> </script>
+{% endblock %}

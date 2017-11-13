@@ -1,0 +1,103 @@
+{% extends 'layout.html' %}
+{% load static from staticfiles %}
+
+
+
+
+{% block content %}
+
+<!-- CHART -->
+<div class="container-fluid candlechart" id="front-img-container">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10 middle" id="candlestickdiv">
+    <p id="title-detail">{{object.title}}(<span class="symbolchoice">{{object.symbol}}</span>)</p>
+  <div id="candlestick"></div>
+  </div>
+  <div class="col-sm-1"></div>
+  </div>
+<!-- Trade Table -->
+<div class="container-fluid" id="front-img-container">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10 middle">
+    <table class="table table-striped" id="table-striped">
+      <thead>
+      <tr id="tableheaderRow">
+        <th id="future-headers">Contract</th>
+        <th id="future-headers">Execution</th>
+        <th id="future-headers">Exchange</th>
+        <th id="future-headers">Symbol</th>
+        <th id="future-headers">Price</th>
+        <th id="future-headers">Net Change</th>
+        <th id="future-headers">Open</th>
+        <th id="future-headers">High</th>
+        <th id="future-headers">Low</th>
+        <th id="future-headers">Prev. Settle</th>
+        <th id="future-headers">Volume</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+
+
+        <td class="futures" id="commodity">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6" id="choice-div">
+          <select class ="choice" name="item">
+          {% for vari_choice in object.variation_set.all|dictsort:"id" %}
+            <option class ="choices"   value="{{vari_choice.symbol}}">{{vari_choice.title}}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <div class="col-sm-3">
+          </div>
+        </td>
+        <td class="futures">{{object.title}}</td>
+        <td class="futures">{{object.exchange}}</td>
+        <td class="futures symbolchoice">{{object.symbol}}</td>
+        <td id="price" class="futures"></td>
+        <td id="net-change" class="futures"></td>
+        <td id="open" class="futures"></td>
+        <td id="high" class="futures"></td>
+        <td id="low" class="futures"></td>
+        <td id="prev-settle" class="futures"></td>
+        <td id="volume" class="futures"></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="futures" id="order">
+          <form method="post" id="trade-futures" action="">{%csrf_token%}
+        <input type="submit" id="buybutton" class="Buy" value="Buy">
+        <input type="hidden" name="purchaseprice" id="purchaseprice">
+        <input type="number" name="quantity" min="0" value="0" class="quantity">
+        <input type="hidden" name="symbol" id="purchasesymbol" />
+        <input type="hidden" name="multiplier" id=total_multiplier value = "{{object.multiplier}}">
+        <input type="hidden" name="purchasequantity" id="purchasequantity" />
+        <input type="submit" id="sellbutton" class="Sell" value="Sell">
+      </form>
+      </td>
+      </tr>
+    </tbody>
+    </table>
+
+
+
+</div>
+<div class="col-sm-1"></div>
+</div>
+
+
+
+<!-- {{object.exchange}} -->
+
+{% endblock content %}
+
+{% block futurejs %}
+<script type="text/javascript">
+var exchange = "{{object.exchange}}"
+var symbol = "{{object.symbol}}"
+
+var x = "{{object.variation.title}}"
+console.log("This is a vari",x)
+</script>
+<script type="text/javascript" src="{% static 'Javascript/future.js' %}"> </script>
+<script type="text/javascript" src="{% static 'Javascript/plotly-latest.min.js' %}"> </script>
+{% endblock %}

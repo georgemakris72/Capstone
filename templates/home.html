@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% load static from staticfiles %}
+
+
+
+{% block content %}
+<div class="container-fluid" id="front-img-container">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10 middle">
+      <img src= "{% static 'images/floor.jpg' %}" id="front-img"/>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+
+    {% endblock %}

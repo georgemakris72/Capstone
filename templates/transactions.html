@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+{% load static from staticfiles %}
+
+
+
+  {% block content %}
+
+<div class="container-fluid" id="front-img-container">
+  <div class="col-sm-1"></div>
+<div class="col-sm-10 middle">
+  <table class="table table-striped" id="table-striped">
+    <thead>
+    <tr id="tableheaderRow">
+      <!-- <th id="future-headers">Date</th> -->
+      <th id="future-headers">Quantity</th>
+      <th id="future-headers">Product</th>
+      <th id="future-headers">Price</th>
+      <th id="future-headers">Transaction Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for transaction in object %}
+    <tr>
+      <!-- <td id="futures">{{transaction.timestamp}}</td> -->
+      <td id="futures">{{transaction.quantity}}</td>
+      <td id="futures">{{transaction.symbol}}</td>
+      <td id="futures" class="futuress">{{transaction.price}}</td>
+      <td id="futures" class="futuress">{{transaction.transaction_amount}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+
+</div>
+<div class="col-sm-1"></div>
+</div>
+
+
+
+<!-- {{object.exchange}} -->
+
+{% endblock content %}
+
+{% block futurejs %}
+<script type="text/javascript">
+var exchange = "{{object.exchange}}"
+var symbol = "{{object.symbol}}"
+
+var x = "{{object.variation.title}}"
+console.log("This is a vari",x)
+</script>
+<script type="text/javascript" src="{% static 'Javascript/plotly-latest.min.js' %}"> </script>
+{% endblock %}

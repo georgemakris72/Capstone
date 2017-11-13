@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% load static from staticfiles %}
+
+
+  {% block content %}
+  <div class="container-fluid" id="front-img-container">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10 middle">
+      <img src="http://res.cloudinary.com/djs3ju36l/image/upload/v1510465989/CBOT_adxdec.jpg" id="front-img"/>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+  <div class="container-fluid">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6" >
+      <!-- "http://www.example.com/subscribe.php" -->
+      <form action="http://www.example.com/subscribe.php" id="middle2"> <p><b>Please contact us with any questions about our firm.</b></p>
+                      <p><b>We can be reached at <a href="mailto:george.a.makris@gmail.com" data-transition="turn">someone@AgFutures.com   </a>or by phone at (555)555-5555</b></p>
+                    <textarea name="comments" id="textarea" cols="80" rows="12" placeholder="Enter your inquiries..."></textarea>
+                    <input type="submit" name="submit" value="Submit"/ id="Contactbutton">
+                    </form>
+          </div>
+      <div class="col-sm-3"></div>
+    </div>
+
+  {% endblock %}

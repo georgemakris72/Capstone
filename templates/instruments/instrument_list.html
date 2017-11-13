@@ -1,0 +1,44 @@
+{% extends 'layout.html'%}
+{% load static from staticfiles %}
+
+
+
+
+{% block content %}
+<div class="container-fluid" id="front-img-container">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6 middle">
+<table class="table table-striped" id="table-striped">
+  <thead>
+  <tr id="tableheaderRow">
+    <th id="future-headers">Contract</th>
+    <th id="future-headers">Exchange</th>
+    <th id="future-headers">Symbol</th>
+  </tr>
+</thead>
+<tbody>
+  {% for instrument in object_list %}
+  <tr>
+    <td id="futures"><a href="{{instrument.get_absolute_url}}" id="futuredetail">{{instrument.title}}</a></td>
+    <td id="futures">{{instrument.exchange}}</td>
+    <td id="futures">{{instrument.symbol}}</td>
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+</div>
+<div class="col-sm-3"></div>
+</div>
+{% endblock %}
+
+{% block futurejs %}
+<script type="text/javascript" src="{% static 'Javascript/jquery.tablesorter.js' %}"></script>
+
+<script>
+$(document).ready(function()
+  {
+      $("#table-striped").tablesorter();
+  }
+);
+</script>
+{% endblock %}

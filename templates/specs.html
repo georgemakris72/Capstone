@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% load static from staticfiles %}
+
+{% block content %}
+<div class="container-fluid" id="front-img-container">
+    <div class="col-sm-3">
+
+
+<select id="picDD">
+    <option value="0" selected>Corn</option>
+    <option value="1">Soybeans</option>
+    <option value="2">Wheat</option>
+    <option value="3">Soybean Meal</option>
+    <option value="4">Soybean Oil</option>
+    <option value="5">Oats</option>
+    <option value="6">Rough Rice</option>
+    <option value="7">Live Cattle</option>
+    <option value="8">Lean Hogs</option>
+    <option value="9">Milk</option>
+    <option value="10">Coffee</option>
+    <option value="11">Cocoa</option>
+    <option value="12">Cotton</option>
+    <option value="13">Orange Juice</option>
+    <option value="14">Sugar</option>
+</select>
+</div>
+<div class="col-sm-6 middle">
+  <img id="specpics" src="{% static 'Specs_images/CornSpecs.png' %}" />
+</div>
+<div class="col-sm-3"></div>
+</div>
+
+{% endblock %}
