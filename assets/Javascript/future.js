@@ -217,7 +217,7 @@ $.ajax(
       var price = $('#purchaseprice').val();
       var sym = $('#purchasesymbol').val();
       var multiplier = $('#total_multiplier').val();
-      $('#purchasequantity').val($('.quantity').val()[0] * -1);
+      $('#purchasequantity').val($('.quantity').val() * -1);
       confirm("You want to sell  "+quantity*-1+" contract(s) of "+sym+" at "+ price);
       var cash_outlay=quantity*price*50
 
@@ -235,7 +235,7 @@ $.ajax(
       var price = $('#purchaseprice').val();
       var sym = $('#purchasesymbol').val();
       var multiplier = $('#total_multiplier').val();
-      $('#purchasequantity').val($('.quantity').val()[0]);
+      $('#purchasequantity').val($('.quantity').val());
       confirm("You want to buy  "+quantity+" contract(s) of "+sym+" at "+ price);
   }
     else{

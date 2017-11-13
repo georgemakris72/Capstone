@@ -230,10 +230,10 @@ def purchase_made(request):
                 y.symbol_total=transaction_list[item]['total']
                 y.absolute_symbol=abs(y.symbol_total)
                 y.save()
-            z=Fund()
-            z.user=request.user
-            z.total_funds=int(total_funds)
-            fund_list = Fund.objects.all.values('user').annotate(total=Sum('total_funds'))
+            # z=Fund()
+            # z.user=request.user
+            # z.total_funds=int(total_funds)
+            # fund_list = Fund.objects.all.values('user').annotate(total=Sum('total_funds'))
             # FundSummary.objects.filter(user=request.user.id).delete()
             # for item in range(len(fund_list)):
             #     k=Funded()

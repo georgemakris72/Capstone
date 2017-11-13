@@ -67,7 +67,7 @@
           <form method="post" id="trade-futures" action="">{%csrf_token%}
         <input type="submit" id="buybutton" class="Buy" value="Buy">
         <input type="hidden" name="purchaseprice" id="purchaseprice">
-        <input type="number" name="quantity" min="0" value="0" class="quantity">
+        <input type="number" name="quantity" min="0" class="quantity">
         <input type="hidden" name="symbol" id="purchasesymbol" />
         <input type="hidden" name="multiplier" id=total_multiplier value = "{{object.multiplier}}">
         <input type="hidden" name="purchasequantity" id="purchasequantity" />
