@@ -209,6 +209,7 @@ def purchase_made(request):
         price = request.POST.get('price')
         symbol = request.POST.get('symbol')
         multiplier = request.POST.get('multiplier')
+        total_funds=request.POST.get('total_funds')
         if (int(quantity)!=0):
             t = Transaction()
             t.user = request.user
@@ -230,16 +231,16 @@ def purchase_made(request):
                 y.symbol_total=transaction_list[item]['total']
                 y.absolute_symbol=abs(y.symbol_total)
                 y.save()
-            # z=Fund()
-            # z.user=request.user
-            # z.total_funds=int(total_funds)
-            # fund_list = Fund.objects.all.values('user').annotate(total=Sum('total_funds'))
-            # FundSummary.objects.filter(user=request.user.id).delete()
-            # for item in range(len(fund_list)):
-            #     k=Funded()
-            #     k.user=request.user
-            #     k.total_funded=fund_list[item]['symbol']
-            #     k.save()
+            z=Fund()
+            z.user=request.user
+            z.total_funds=int(total_funds)
+            fund_list = Fund.objects.all.values('user').annotate(total=Sum('total_funds'))
+            FundSummary.objects.filter(user=request.user.id).delete()
+            for item in range(len(fund_list)):
+                k=Funded()
+                k.user=request.user
+                k.total_funded=fund_list[item]['symbol']
+                k.save()
 
 
             print(fund_list)

@@ -29,4 +29,6 @@ $("#not-authenticated, #not-authenticated1, #not-authenticated2, #not-authentica
   alert("You must be logged in to enter this area!");
 });
 
+
+
 });

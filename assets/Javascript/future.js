@@ -54,17 +54,13 @@ $("#trade-futures").submit(function(e){
     price: price,
     symbol: sym,
     multiplier:multiplier,
-    total_funds:total_funds
   }).then(function(response){
     console.log(response);
   }, function(error_response){
     console.log(error_response)
   })
 
-})
-
-
-
+});
 
 
 
