@@ -1,0 +1,3 @@
+# Capstone
+
+This is my final capstone project.  As I used to be a former trader, I created a site for trading agricultural futures. I built a website  utilizing Python, JjQuery, HTML, CSS, Bootstrap, and I used Django as a  framework for both backend SQL databases and for the front end. The application registers new users and allows current users to sign in and trade futures. It also makes several API calls and inserts data into candelstick charts based on symbol of future. I used both matplot lib as well as d3 plotly.js for the various charts. In addition, I use paypal to authorize initial cash outlay to fund the trading account.  All portfolio data is stored and records of all transactions as well as a pie chart of portfolio diversification is available to user.
